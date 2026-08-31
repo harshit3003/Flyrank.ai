@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Form</title>
+</head>
+<body>
+    <h2>App Settings</h2>
+    <form id="settingsForm">
+        <div>
+            <label>Name:</label>
+            <input type="text" id="name" name="name" required minlength="2">
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    <script>
+        document.getElementById('settingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Settings saved!');
+        });
+    </script>
+</body>
+</html>
