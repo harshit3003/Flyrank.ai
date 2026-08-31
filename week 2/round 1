@@ -1,1 +1,23 @@
+# Round 1 (Vague Prompt) - Audit Record
 
+**Implementation Time:**
+~1 minute (AI generated instantly).
+
+**Bugs/Fixes:**
+- Entering whitespace (e.g., `"   "`) bypasses the `minlength` and `required` attributes since the browser's native validation doesn't trim inputs.
+- The success `alert()` blocks the main thread and provides a poor user experience.
+- Fix needed: Add JavaScript-based trimming and validation logic to augment native HTML attributes.
+
+**Review Time:**
+~3 minutes. The code is visibly incomplete and requires a near-total rewrite to meet production standards.
+
+**Accessibility Issues:**
+- **Missing `for` attributes:** Labels do not explicitly link to their respective input `id`s, breaking standard screen reader navigation.
+- **No ARIA roles:** Missing `aria-required="true"`, `aria-invalid`, and `aria-describedby` for error states.
+- **Error feedback:** Using an `alert()` provides no persistent visual or structural feedback to assistive technologies about which specific field failed.
+
+**Missing Edge Cases:**
+- **Double Submission:** The submit button does not disable while processing, allowing users to spam the button.
+- **Whitespace Inputs:** Blank spaces are treated as valid text.
+- **Loading State:** No visual indicator (like a spinner or text change) that settings are being saved.
+- **Silent Failures:** If a network request were added, there is no UI structure to show inline error messages for specific fields that might fail server-side validation.
