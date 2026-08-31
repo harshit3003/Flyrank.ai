@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+</head>
+<body>
+    <h1>Settings</h1>
+    <form id="settingsForm">
+        <label>Name:</label>
+        <input type="text" name="name"><br><br>
+        
+        <label>Email:</label>
+        <input type="email" name="email"><br><br>
+        
+        <label>Theme:</label>
+        <select name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select><br><br>
+        
+        <button type="submit">Save</button>
+    </form>
+    
+    <script>
+        document.getElementById('settingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Settings saved!");
+        });
+    </script>
+</body>
+</html>
