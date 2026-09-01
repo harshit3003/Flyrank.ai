@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-animation"></div>
+  
+  <main class="settings-container">
+    <header class="settings-header">
+      <h1>Account Settings</h1>
+      <p>Manage your account preferences and personal information.</p>
+    </header>
+
+    <form id="settingsForm" class="settings-form" novalidate aria-label="Settings form">
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          placeholder="Enter your username"
+          aria-invalid="false"
+          aria-describedby="username-error"
+          autocomplete="username"
+        >
+        <span id="username-error" class="error-message" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Enter your email address"
+          aria-invalid="false"
+          aria-describedby="email-error"
+          autocomplete="email"
+        >
+        <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password (optional)</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Leave blank to keep current"
+          aria-invalid="false"
+          aria-describedby="password-error"
+          autocomplete="new-password"
+        >
+        <span id="password-error" class="error-message" role="alert" aria-live="polite"></span>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" id="submitBtn" class="btn-primary" aria-disabled="false">
+          <span class="btn-text">Save Changes</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div id="form-success" class="success-message hidden" role="status" aria-live="polite">
+        Settings updated successfully!
+      </div>
+    </form>
+  </main>
+
+  <script src="validation.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
