@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KishaanMarket Case Study | Harshit Gupta</title>
+    <meta name="description" content="Engineering case study for KishaanMarket Agritech Platform">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific Case Study Styles */
+        .cs-header {
+            padding-bottom: 24px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cs-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .cs-header p {
+            font-size: 1.25rem;
+            color: var(--secondary-text);
+        }
+
+        .architecture-diagram {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .arch-node {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .arch-node h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted-text);
+            margin-bottom: 8px;
+        }
+
+        .arch-node span {
+            font-size: 1.1rem;
+            color: var(--primary-text);
+            font-weight: 500;
+        }
+
+        .arch-arrow {
+            color: var(--muted-text);
+            font-size: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .tech-tags span {
+            padding: 6px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-text);
+        }
+
+        .subsection h4 {
+            font-size: 1rem;
+            color: var(--primary-text);
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo">Harshit Gupta</div>
+            <ul class="nav-links">
+                <li><a href="index.html">&larr; Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="case-study-hero" style="padding-bottom: 40px;">
+            <div class="container reveal">
+                <div class="cs-header">
+                    <h1>KishaanMarket</h1>
+                    <p>Engineering a direct-to-consumer agritech trading platform.</p>
+                </div>
+
+                <div class="exp-meta">
+                    <div class="meta-item">
+                        <span class="meta-label mono">Project</span>
+                        <span class="meta-value">KishaanMarket</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label mono">Type</span>
+                        <span class="meta-value">Full-Stack Agritech Marketplace</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label mono">Role</span>
+                        <span class="meta-value">Creator</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label mono">Status</span>
+                        <span class="meta-value" style="color: var(--accent);">Deployed</span>
+                    </div>
+                </div>
+
+                <div class="reveal" style="margin-top: 40px;">
+                    <a href="https://kishanmarket.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.95rem; padding: 12px 24px;">Live Demo &nearr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-study-content" style="padding-top: 40px;">
+            <div class="container">
+                
+                <div class="case-study-beat reveal">
+                    <div class="beat-num mono">01</div>
+                    <div class="beat-content">
+                        <h3>The Problem</h3>
+                        <p>Agricultural trade is historically burdened by heavy intermediation. Connecting farmers (sellers) directly with wholesale buyers (traders) presents significant technical and logistical challenges.</p>
+                        <p>The core problems this platform solves are the difficulty of direct agricultural trade, including transparent price discovery, live negotiation and communication between buyers and sellers, managing active crop listings, understanding market prices (mandi rates), and handling the mathematical constraints of transport logistics.</p>
+                    </div>
+                </div>
+
+                <div class="case-study-beat reveal">
+                    <div class="beat-num mono">02</div>
+                    <div class="beat-content">
+                        <h3>What I Did</h3>
+                        <p>I engineered a complete two-sided marketplace architecture designed specifically for agricultural trading. The system separates the workflows of farmers and traders into distinct, role-based dashboards while uniting them through a real-time negotiation engine.</p>
+                        
+                        <div class="subsection">
+                            <h4>Frontend Architecture</h4>
+                            <p>The client is a single-page application built with <strong>React</strong> and bundled via <strong>Vite</strong>. I utilized <strong>TailwindCSS</strong> for rapid, responsive styling. To handle the complex geographical nature of agriculture, I integrated <strong>Mapbox-GL</strong> and <strong>Leaflet</strong> for mapping functionalities. For data visualization (e.g., market trends), I integrated <strong>Chart.js</strong>. <strong>Framer Motion</strong> was used selectively to ensure smooth UI transitions.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h4>Backend & Persistence</h4>
+                            <p>The server operates on <strong>Node.js</strong> and <strong>Express.js</strong>, exposing secure REST APIs. The persistence layer is hybrid: utilizing <strong>MongoDB</strong> (via Mongoose) for flexible document storage of crop listings and user profiles, alongside <strong>SQLite</strong>. Authentication is strictly enforced using <strong>bcrypt</strong> for password hashing and <strong>JWT</strong> (JSON Web Tokens) to securely isolate the seller (farmer) and buyer (trader) endpoints.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h4>Real-Time Negotiation & Bidding</h4>
+                            <p>To solve the negotiation problem, I implemented a full duplex WebSockets layer using <strong>Socket.io</strong>. This system allows buyers to submit live bids on crop listings. Sellers receive these bids instantly and can execute a state-machine workflow to <em>Accept</em>, <em>Reject</em>, or issue a <em>Counter-offer</em>. The real-time chat system runs parallel to the bidding engine to facilitate direct communication.</p>
+                        </div>
+
+                        <div class="subsection">
+                            <h4>Buyer Demand & Market Intelligence</h4>
+                            <p>Instead of relying purely on seller supply, the platform features a reverse-procurement mechanism (buyer demand requests) where buyers can explicitly communicate the crops they need, allowing sellers to fulfill them. I also integrated a market intelligence module that displays relevant mandi price data, and built a logistics/profitability calculator to help users understand transport costs prior to finalizing a bid.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-beat reveal">
+                    <div class="beat-num mono">03</div>
+                    <div class="beat-content">
+                        <h3>What Came of It</h3>
+                        <p>I successfully built a working, highly-interactive full-stack agritech marketplace that brings multiple, complex parts of agricultural trading into a single application.</p>
+                        <p>The final implementation proves the viability of combining standard marketplace listings, distinct role-based workflows, live WebSockets-based negotiation, order management, and market intelligence tools into one cohesive digital product.</p>
+                        
+                        <div class="architecture-diagram mono">
+                            <div class="arch-node">
+                                <h4>Frontend</h4>
+                                <span>React + Vite</span>
+                            </div>
+                            <div class="arch-arrow">&darr;</div>
+                            <div class="arch-node">
+                                <h4>Backend</h4>
+                                <span>Node.js + Express</span>
+                            </div>
+                            <div class="arch-arrow">&darr;</div>
+                            <div class="arch-node">
+                                <h4>Real-Time Layer</h4>
+                                <span>Socket.io</span>
+                            </div>
+                            <div class="arch-arrow">&darr;</div>
+                            <div class="arch-node">
+                                <h4>Persistence</h4>
+                                <span>MongoDB + SQLite</span>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h4>Verified Technology Stack</h4>
+                            <div class="tech-tags mono">
+                                <span>React</span>
+                                <span>Vite</span>
+                                <span>Node.js</span>
+                                <span>Express.js</span>
+                                <span>Socket.io</span>
+                                <span>MongoDB</span>
+                                <span>Mongoose</span>
+                                <span>SQLite</span>
+                                <span>TailwindCSS</span>
+                                <span>Leaflet</span>
+                                <span>Mapbox-GL</span>
+                                <span>Chart.js</span>
+                                <span>Framer Motion</span>
+                                <span>JWT</span>
+                                <span>bcrypt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-name">Harshit Gupta</span>
+                <span class="footer-title">CSE (AI/ML) &middot; Developer</span>
+                <span class="footer-copy">&copy; <span id="year"></span> Harshit Gupta</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/script.js"></script>
+</body>
+
+</html>
