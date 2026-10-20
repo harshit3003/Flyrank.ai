@@ -12,12 +12,16 @@ app = FastAPI(
     description="A tiny to-do list API with full CRUD on an in-memory list (no database).",
 )
 
+def seed_tasks() -> list:
+    return [
+        {"id": 1, "title": "Learn HTTP", "done": True},
+        {"id": 2, "title": "Build a CRUD API", "done": False},
+        {"id": 3, "title": "Push to GitHub", "done": False},
+    ]
+
+
 # In-memory "database": a plain list. It is wiped every time the server restarts.
-tasks = [
-    {"id": 1, "title": "Learn HTTP", "done": True},
-    {"id": 2, "title": "Build a CRUD API", "done": False},
-    {"id": 3, "title": "Push to GitHub", "done": False},
-]
+tasks = seed_tasks()
 
 
 class Task(BaseModel):
@@ -84,9 +88,14 @@ def health():
 
 
 @app.get("/tasks", summary="List all tasks", tags=["tasks"], response_model=list[Task])
-def list_tasks():
-    """Return all tasks."""
-    return tasks
+def list_tasks(done: Optional[bool] = None, search: Optional[str] = None):
+    """Return all tasks. Optional filters: `?done=true` and `?search=milk` (case-insensitive title match)."""
+    result = tasks
+    if done is not None:
+        result = [t for t in result if t["done"] == done]
+    if search:
+        result = [t for t in result if search.lower() in t["title"].lower()]
+    return result
 
 
 @app.get("/tasks/{task_id}", summary="Get one task", tags=["tasks"], responses=ERR_404, response_model=Task)
@@ -133,6 +142,20 @@ def delete_task(task_id: int):
             del tasks[i]
             return Response(status_code=204)
     return not_found(task_id)
+
+
+@app.get("/stats", summary="Task statistics", tags=["extras"])
+def stats():
+    """Count total, done and open tasks."""
+    done = sum(1 for t in tasks if t["done"])
+    return {"total": len(tasks), "done": done, "open": len(tasks) - done}
+
+
+@app.post("/reset", summary="Restore the 3 example tasks", tags=["extras"])
+def reset():
+    """Replace all tasks with the original 3 examples (handy for demos)."""
+    tasks[:] = seed_tasks()
+    return {"status": "reset", "total": len(tasks)}
 
 
 def custom_openapi():
