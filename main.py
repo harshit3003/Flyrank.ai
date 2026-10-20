@@ -2,8 +2,8 @@ from typing import Optional
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from fastapi.responses import JSONResponse, Response
+from pydantic import BaseModel, StrictBool
 
 app = FastAPI(title="Task API", version="1.0")
 
@@ -19,6 +19,13 @@ class TaskIn(BaseModel):
     """Body for creating a task."""
 
     title: Optional[str] = None
+
+
+class TaskUpdate(BaseModel):
+    """Body for updating a task: send title, done, or both."""
+
+    title: Optional[str] = None
+    done: Optional[StrictBool] = None
 
 
 def bad_request(message: str) -> JSONResponse:
@@ -80,3 +87,30 @@ def create_task(body: TaskIn):
     task = {"id": next_id(), "title": body.title.strip(), "done": False}
     tasks.append(task)
     return task
+
+
+@app.put("/tasks/{task_id}")
+def update_task(task_id: int, body: TaskUpdate):
+    """Update a task's title and/or done flag. 404 if unknown, 400 if the body is empty or invalid."""
+    task = next((t for t in tasks if t["id"] == task_id), None)
+    if task is None:
+        return not_found(task_id)
+    if body.title is None and body.done is None:
+        return bad_request("send at least one of: title (non-empty string), done (true/false)")
+    if body.title is not None:
+        if not body.title.strip():
+            return bad_request("title must be a non-empty string")
+        task["title"] = body.title.strip()
+    if body.done is not None:
+        task["done"] = body.done
+    return task
+
+
+@app.delete("/tasks/{task_id}", status_code=204)
+def delete_task(task_id: int):
+    """Delete a task. Returns 204 with an empty body, or 404 if unknown."""
+    for i, task in enumerate(tasks):
+        if task["id"] == task_id:
+            del tasks[i]
+            return Response(status_code=204)
+    return not_found(task_id)
